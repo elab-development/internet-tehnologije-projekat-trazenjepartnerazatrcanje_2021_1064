@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Itinerary;
+use App\Models\Comment;
+use App\Models\Plan;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +18,52 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::truncate();
+        Plan::truncate();
+        Comment::truncate();
+        Itinerary::truncate();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
+
+        $plan1 = Plan::factory()->create([
+            'user_id' => $user1->id
+        ]);
+        $plan2 = Plan::factory()->create([
+            'user_id' => $user1->id
+        ]);
+        $plan3 = Plan::factory()->create([
+            'user_id' => $user2->id
+        ]);
+
+        Comment::factory()->create([
+            'user_id' => $user1->id,
+            'plan_id' => $plan3->id,
+        ]);
+        Comment::factory()->create([
+            'user_id' => $user2->id,
+            'plan_id' => $plan1->id,
+        ]);
+
+        Itinerary::factory()->create([
+            'user_id' => $user1->id,
+            'plan_id' => $plan1->id,
+        ]);
+        Itinerary::factory()->create([
+            'user_id' => $user1->id,
+            'plan_id' => $plan2->id,
+        ]);
+        Itinerary::factory()->create([
+            'user_id' => $user1->id,
+            'plan_id' => $plan3->id,
+        ]);
+        Itinerary::factory()->create([
+            'user_id' => $user2->id,
+            'plan_id' => $plan1->id,
+        ]);
+        Itinerary::factory()->create([
+            'user_id' => $user2->id,
+            'plan_id' => $plan3->id,
+        ]);
     }
 }
