@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Comment;
+namespace App\Http\Resources\Itinerary;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CommentCollection extends ResourceCollection
+class ItineraryCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -12,7 +12,7 @@ class CommentCollection extends ResourceCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public static $wrap = 'comments';
+    public static $wrap = 'itineraries';
 
     public function toArray($request)
     {

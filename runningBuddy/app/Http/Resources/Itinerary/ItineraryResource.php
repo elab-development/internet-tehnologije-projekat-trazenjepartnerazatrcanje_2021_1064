@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Comment;
+namespace App\Http\Resources\Itinerary;
 
 use App\Http\Resources\Plan\PlanResource;
 use App\Http\Resources\User\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CommentResource extends JsonResource
+class ItineraryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,16 +14,15 @@ class CommentResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public static $wrap = 'comment';
+    public static $wrap = 'itinerary';
 
     public function toArray($request)
     {
         return [
             'id' => $this->resource->id,
-            'content' => $this->resource->content,
-            'rating' => $this->resource->rating,
-            'user' => new UserResource($this->resource->user),
             'plan' => new PlanResource($this->resource->plan),
+            'date' => $this->resource->date,
+            'user' => new UserResource($this->resource->user),
         ];
     }
 }
