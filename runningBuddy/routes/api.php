@@ -2,6 +2,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\ItineraryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,9 @@ Route::get('/users/{id}', [UserController::class, 'show']);
 Route::get('/plans', [PlanController::class, 'index']);
 Route::get('/plans/{id}', [PlanController::class, 'show']);
 
+Route::get('/itineraries', [ItineraryController::class, 'index']);
+Route::get('/itineraries/{id}', [ItineraryController::class, 'show']);
+
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -34,6 +38,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
     Route::resource('/plans', PlanController::class)
     ->only(['store', 'update', 'destroy']);
-
+    Route::resource('/itineraries', ItineraryController::class)
+    ->only(['store', 'update', 'destroy']);
+    
 Route::post('/logout', [AuthController::class, 'logout']);
 });
