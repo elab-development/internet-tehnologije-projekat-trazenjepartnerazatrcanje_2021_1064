@@ -21,6 +21,9 @@
   "axios": "^1.7.2",
   
     
+  "babel-preset-react-app": "^10.0.1",
+  
+    
   "date-fns": "^3.6.0",
   
     
